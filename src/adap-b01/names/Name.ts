@@ -6,6 +6,7 @@ export class Name {
     private components: string[] = [];
     private delimiter: string = this.DEFAULT_DELIMITER;
 
+    // @methodtype object-creation-method
     constructor(other: string[], delimiter?: string) {
         this.components = other;
         if (delimiter != undefined) {
