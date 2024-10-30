@@ -1,4 +1,5 @@
 import { Name, DEFAULT_DELIMITER, ESCAPE_CHARACTER } from "./Name";
+import { StringArrayName } from "./StringArrayName";
 
 export class StringName implements Name {
 
@@ -6,53 +7,59 @@ export class StringName implements Name {
 
     protected name: string = "";
     protected length: number = 0;
+    protected nameAsArray: StringArrayName;
 
     constructor(other: string, delimiter?: string) {
-        throw new Error("needs implementation");
+        this.name = other;
+        if (delimiter != undefined) {
+            this.delimiter = delimiter;
+        }
+        const components = this.name.split(this.delimiter);
+        this.nameAsArray = new StringArrayName(components, this.delimiter);
     }
 
     public asString(delimiter: string = this.delimiter): string {
-        throw new Error("needs implementation");
+        return this.nameAsArray.asString(delimiter);
     }
 
     public asDataString(): string {
-        throw new Error("needs implementation");
+        return this.nameAsArray.asDataString();
     }
 
     public isEmpty(): boolean {
-        throw new Error("needs implementation");
+        return this.nameAsArray.isEmpty();
     }
 
     public getDelimiterCharacter(): string {
-        throw new Error("needs implementation");
+        return this.delimiter;
     }
 
     public getNoComponents(): number {
-        throw new Error("needs implementation");
+        return this.nameAsArray.getNoComponents();
     }
 
     public getComponent(x: number): string {
-        throw new Error("needs implementation");
+        return this.nameAsArray.getComponent(x);
     }
 
     public setComponent(n: number, c: string): void {
-        throw new Error("needs implementation");
+        this.nameAsArray.setComponent(n, c);
     }
 
     public insert(n: number, c: string): void {
-        throw new Error("needs implementation");
+        this.nameAsArray.insert(n, c);
     }
 
     public append(c: string): void {
-        throw new Error("needs implementation");
+        this.nameAsArray.append(c);
     }
 
     public remove(n: number): void {
-        throw new Error("needs implementation");
+        this.nameAsArray.remove(n);
     }
 
     public concat(other: Name): void {
-        throw new Error("needs implementation");
+        this.nameAsArray.concat(other);
     }
 
 }
