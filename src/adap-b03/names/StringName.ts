@@ -1,34 +1,40 @@
 import { Name, DEFAULT_DELIMITER, ESCAPE_CHARACTER } from "./Name";
 import { AbstractName } from "./AbstractName";
+import { StringArrayName } from "./StringArrayName";
 
 export class StringName extends AbstractName {
 
     protected name: string = "";
     protected length: number = 0;
 
+    protected nameAsArray: StringArrayName;
+
     constructor(other: string, delimiter?: string) {
-        super();
-        throw new Error("needs implementation");
+        super(delimiter);
+        this.name = other;
+
+        const components = this.name.split(this.delimiter);
+        this.nameAsArray = new StringArrayName(components, this.delimiter);
     }
 
     getNoComponents(): number {
-        throw new Error("needs implementation");
+        return this.nameAsArray.getNoComponents();
     }
 
     getComponent(i: number): string {
-        throw new Error("needs implementation");
+        return this.nameAsArray.getComponent(i);
     }
     setComponent(i: number, c: string) {
-        throw new Error("needs implementation");
+        this.nameAsArray.setComponent(i, c);
     }
 
     insert(i: number, c: string) {
-        throw new Error("needs implementation");
+        this.nameAsArray.insert(i, c);
     }
     append(c: string) {
-        throw new Error("needs implementation");
+        this.nameAsArray.append(c);
     }
     remove(i: number) {
-        throw new Error("needs implementation");
+        this.nameAsArray.remove(i);
     }
 }
