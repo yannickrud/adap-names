@@ -4,7 +4,6 @@ import { StringArrayName } from "./StringArrayName";
 export class StringName implements Name {
 
     protected delimiter: string = DEFAULT_DELIMITER;
-
     protected name: string = "";
     protected length: number = 0;
     protected nameAsArray: StringArrayName;

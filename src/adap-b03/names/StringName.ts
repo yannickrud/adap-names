@@ -1,4 +1,5 @@
-import { Name, DEFAULT_DELIMITER, ESCAPE_CHARACTER } from "./Name";
+import { DEFAULT_DELIMITER, ESCAPE_CHARACTER } from "../common/Printable";
+import { Name } from "./Name";
 import { AbstractName } from "./AbstractName";
 import { StringArrayName } from "./StringArrayName";
 
@@ -37,4 +38,5 @@ export class StringName extends AbstractName {
     remove(i: number) {
         this.nameAsArray.remove(i);
     }
+
 }
