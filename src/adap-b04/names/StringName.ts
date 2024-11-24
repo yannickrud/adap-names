@@ -1,75 +1,61 @@
 import { DEFAULT_DELIMITER, ESCAPE_CHARACTER } from "../common/Printable";
 import { Name } from "./Name";
 import { AbstractName } from "./AbstractName";
+import { StringArrayName } from "./StringArrayName";
 
 export class StringName extends AbstractName {
 
     protected name: string = "";
     protected noComponents: number = 0;
 
+    protected nameAsArray: StringArrayName;
+
+    // class invariant 1: other is not null or undefined. <- checked in StringArrayName
+    // class invariant 2: delimiter is not null or undefined. <- checked in abstract class
     constructor(other: string, delimiter?: string) {
-        super();
-        throw new Error("needs implementation");
+        super(delimiter);
+        this.name = other;
+
+        const components = this.name.split(this.delimiter);
+        this.nameAsArray = new StringArrayName(components, this.delimiter);
     }
 
-    public clone(): Name {
-        throw new Error("needs implementation");
-    }
-
-    public asString(delimiter: string = this.delimiter): string {
-        throw new Error("needs implementation");
-    }
-
-    public toString(): string {
-        throw new Error("needs implementation");
-    }
-
-    public asDataString(): string {
-        throw new Error("needs implementation");
-    }
-
-    public isEqual(other: Name): boolean {
-        throw new Error("needs implementation");
-    }
-
-    public getHashCode(): number {
-        throw new Error("needs implementation");
-    }
-
-    public isEmpty(): boolean {
-        throw new Error("needs implementation");
-    }
-
-    public getDelimiterCharacter(): string {
-        throw new Error("needs implementation");
-    }
 
     public getNoComponents(): number {
-        throw new Error("needs implementation");
+        return this.nameAsArray.getNoComponents();
     }
 
+    // pre-condition: i is a valid index <- checked in StringArrayName
     public getComponent(i: number): string {
-        throw new Error("needs implementation");
+        return this.nameAsArray.getComponent(i);
     }
 
+    // pre-condition: i is a valid index <- checked in StringArrayName
+    // pre-condition: c is not null or undefined <- checked in StringArrayName
+    // post-condition: getComponent(i) == c <- checked in StringArrayName
     public setComponent(i: number, c: string) {
-        throw new Error("needs implementation");
+        return this.nameAsArray.setComponent(i, c);
     }
 
+    // pre-condition: i is a valid index <- checked in StringArrayName
+    // pre-condition: c is not null or undefined <- checked in StringArrayName
+    // post-condition: getNoComponents() == old getNoComponents() + 1 <- checked in StringArrayName
+    // post-condition: getComponent(i) == c <- checked in StringArrayName
     public insert(i: number, c: string) {
-        throw new Error("needs implementation");
+        return this.nameAsArray.insert(i, c);
     }
 
+    // pre-condition: c is not null or undefined <- checked in StringArrayName
+    // post-condition: getNoComponents() == old getNoComponents() + 1 <- checked in StringArrayName
+    // post-condition: getComponent(getNoComponents() - 1) == c <- checked in StringArrayName
     public append(c: string) {
-        throw new Error("needs implementation");
+        return this.nameAsArray.append(c);
     }
 
+    // pre-condition: i is a valid index <- checked in StringArrayName
+    // post-condition: getNoComponents() == old getNoComponents() - 1 <- checked in StringArrayName
     public remove(i: number) {
-        throw new Error("needs implementation");
-    }
-
-    public concat(other: Name): void {
-        throw new Error("needs implementation");
+        return this.nameAsArray.remove(i);
     }
 
 }
