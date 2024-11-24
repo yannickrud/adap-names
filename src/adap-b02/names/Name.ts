@@ -1,5 +1,8 @@
 import { Printable } from "../common/Printable";
 
+export const DEFAULT_DELIMITER: string = '.';
+export const ESCAPE_CHARACTER = '\\';
+
 /**
  * A name is a sequence of string components separated by a delimiter character.
  * Special characters within the string may need masking, if they are to appear verbatim.
@@ -36,7 +39,7 @@ export interface Name extends Printable {
     append(c: string): void;
 
     remove(i: number): void;
-    
+
     concat(other: Name): void;
-    
+
 }
